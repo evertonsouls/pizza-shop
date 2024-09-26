@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { Outlet, useNavigate } from 'react-router-dom'
 
 import { getProfile } from '@/api/get-profile'
+import { BigLoader } from '@/components/big-loader'
 import { Header } from '@/components/header'
 
 export function AppLayout() {
@@ -13,7 +14,7 @@ export function AppLayout() {
     staleTime: Infinity,
   })
 
-  if (isLoadingProfile) return null
+  if (isLoadingProfile) return <BigLoader />
 
   if (!profile) {
     navigate('/sign-in', { replace: true })
